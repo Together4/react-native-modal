@@ -266,7 +266,10 @@ export class ReactNativeModal extends React.Component<ModalProps, State> {
   }
 
   componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.onBackButtonPress);
+    BackHandler.removeEventListener(
+      'hardwareBackPress',
+      this.onBackButtonPress,
+    );
     DeviceEventEmitter.removeListener(
       'didUpdateDimensions',
       this.handleDimensionsUpdate,
@@ -308,11 +311,11 @@ export class ReactNativeModal extends React.Component<ModalProps, State> {
   getDeviceWidth = () => this.props.deviceWidth || this.state.deviceWidth;
   onBackButtonPress = () => {
     if (this.props.onBackButtonPress && this.props.isVisible) {
-      this.props.onBackButtonPress()
-      return true
+      this.props.onBackButtonPress();
+      return true;
     }
-    return false
-  }  
+    return false;
+  };
   buildPanResponder = () => {
     let animEvt: OrNull<AnimationEvent> = null;
 
